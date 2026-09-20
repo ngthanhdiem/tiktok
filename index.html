@@ -1,0 +1,1277 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>Tải video TikTok - Không watermark, HD, MP3</title>
+<style>
+:root {
+  --bg: #0a0e17;
+  --card: #131a2a;
+  --card-2: #1a2236;
+  --border: #212b42;
+  --border-2: #2d3954;
+  --text: #e6edf7;
+  --text-2: #8b98b3;
+  --text-3: #5a6683;
+  --accent: #3b82f6;
+  --accent-2: #6366f1;
+  --green: #10b981;
+  --red: #ef4444;
+  --pink: #ec4899;
+  --cyan: #06b6d4;
+  --yellow: #f59e0b;
+}
+[data-theme="light"] {
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --card-2: #f8fafc;
+  --border: #e2e8f0;
+  --border-2: #cbd5e1;
+  --text: #0f172a;
+  --text-2: #64748b;
+  --text-3: #94a3b8;
+  --accent: #2563eb;
+  --accent-2: #4f46e5;
+  --green: #059669;
+  --red: #dc2626;
+  --pink: #db2777;
+  --cyan: #0891b2;
+  --yellow: #d97706;
+}
+* {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(circle at 0% 0%, rgba(236,72,153,0.10), transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(6,182,212,0.10), transparent 40%);
+  min-height: 100vh;
+  margin: 0;
+  padding: 16px;
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+  overflow-x: hidden;
+}
+.nav {
+  position: fixed; top: 16px; left: 16px; right: 16px;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 100; pointer-events: none;
+}
+.nav > * { pointer-events: auto; }
+.nav-left, .nav-right { display: flex; gap: 8px; }
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 0.82rem; font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.nav-btn:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+  transform: translateY(-1px);
+}
+.nav-btn svg { width: 14px; height: 14px; }
+.nav-btn.icon-only { padding: 9px; width: 36px; justify-content: center; }
+.nav-btn.icon-only svg { width: 16px; height: 16px; }
+
+.app { max-width: 720px; margin: 60px auto 0; padding: 0; }
+.header { text-align: center; margin-bottom: 24px; }
+.header h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--pink), var(--cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.header h1 .icon {
+  -webkit-text-fill-color: initial;
+  font-size: 1.6rem;
+}
+.header p {
+  color: var(--text-3);
+  font-size: 0.88rem;
+  margin: 0 auto;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.input-panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
+  transition: border-color 0.15s;
+}
+.input-panel:focus-within { border-color: var(--pink); }
+.input-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+.input-wrap {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--text-3);
+  pointer-events: none;
+  font-size: 1rem;
+}
+.input-wrap input {
+  width: 100%;
+  padding: 14px 40px 14px 42px;
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 0.88rem;
+  outline: none;
+  transition: all 0.15s;
+}
+.input-wrap input::placeholder {
+  color: var(--text-3);
+  font-size: 0.85rem;
+}
+.input-wrap input:focus { border-color: var(--pink); }
+.clear-btn {
+  position: absolute;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  color: var(--text-3);
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+.clear-btn.visible { display: flex; }
+.clear-btn:hover {
+  background: var(--card);
+  color: var(--red);
+}
+.paste-btn {
+  padding: 0 14px;
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.paste-btn:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+}
+
+.main-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--pink), var(--cyan));
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 6px 20px rgba(236,72,153,0.3);
+}
+.main-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(236,72,153,0.45);
+}
+.main-btn:active:not(:disabled) { transform: translateY(0); }
+.main-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.main-btn .spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2.5px solid rgba(255,255,255,0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.example-hint {
+  text-align: center;
+  color: var(--text-3);
+  font-size: 0.75rem;
+  margin-top: 10px;
+  line-height: 1.6;
+}
+.example-hint code {
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--pink);
+  font-family: ui-monospace, monospace;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+.example-hint code:hover { border-color: var(--pink); }
+
+.error-box {
+  display: none;
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  background: rgba(239,68,68,0.08);
+  border: 1px solid rgba(239,68,68,0.3);
+  border-radius: 12px;
+  color: var(--red);
+  font-size: 0.85rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.error-box.active { display: block; }
+
+.result {
+  display: none;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
+  animation: slideUp 0.3s ease;
+}
+.result.active { display: block; }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.result-header {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+}
+.result-thumb {
+  width: 90px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  background: var(--card-2);
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+}
+.result-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+.result-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.result-author {
+  font-size: 0.78rem;
+  color: var(--pink);
+  font-weight: 600;
+}
+.result-meta {
+  font-size: 0.72rem;
+  color: var(--text-3);
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-family: ui-monospace, monospace;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 12px;
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+}
+.stat-value {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+  font-family: ui-monospace, monospace;
+}
+.stat-label {
+  font-size: 0.66rem;
+  color: var(--text-3);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.download-grid {
+  display: grid;
+  gap: 8px;
+}
+.dl-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+  font-family: inherit;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.dl-btn:hover:not(:disabled) {
+  border-color: var(--pink);
+  background: var(--card);
+  transform: translateX(3px);
+}
+.dl-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.dl-btn .dl-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+}
+.dl-btn.hd .dl-icon { background: rgba(6,182,212,0.15); }
+.dl-btn.mp3 .dl-icon { background: rgba(245,158,11,0.15); }
+.dl-btn .dl-info {
+  flex: 1;
+  min-width: 0;
+}
+.dl-btn .dl-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.dl-btn .dl-size {
+  font-size: 0.72rem;
+  color: var(--text-3);
+  font-family: ui-monospace, monospace;
+}
+.dl-btn .dl-arrow {
+  color: var(--text-3);
+  font-size: 1rem;
+  transition: transform 0.15s;
+  flex-shrink: 0;
+}
+.dl-btn:hover:not(:disabled) .dl-arrow {
+  color: var(--pink);
+  transform: translateX(3px);
+}
+.dl-btn .dl-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--pink), var(--cyan));
+  transition: width 0.2s ease;
+}
+.dl-btn.downloading .dl-arrow {
+  animation: spin 0.8s linear infinite;
+}
+.dl-btn.downloading .dl-size {
+  color: var(--cyan);
+  font-weight: 700;
+}
+.dl-btn.success {
+  border-color: var(--green);
+}
+.dl-btn.success .dl-icon {
+  background: rgba(16,185,129,0.15);
+}
+.dl-btn.success .dl-arrow {
+  color: var(--green);
+}
+
+.result-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+.action-btn {
+  flex: 1;
+  min-width: 100px;
+  padding: 9px 14px;
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-2);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.action-btn:hover:not(:disabled) {
+  border-color: var(--pink);
+  color: var(--pink);
+}
+
+.history {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 8px;
+  margin-bottom: 14px;
+}
+.history-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-3);
+}
+.history-clear {
+  background: transparent;
+  border: none;
+  color: var(--text-3);
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 3px 8px;
+  border-radius: 6px;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+.history-clear:hover {
+  color: var(--red);
+  background: var(--card-2);
+}
+.history-item {
+  display: flex;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+.history-item:last-child { border-bottom: none; }
+.history-item:hover { background: var(--card-2); }
+.history-thumb {
+  width: 40px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+  background: var(--card-2);
+  border: 1px solid var(--border);
+}
+.history-info {
+  flex: 1;
+  min-width: 0;
+}
+.history-title {
+  font-size: 0.78rem;
+  color: var(--text);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+.history-author {
+  font-size: 0.7rem;
+  color: var(--pink);
+  font-weight: 600;
+}
+
+.content {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-top: 16px;
+  color: var(--text-2);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+.content h4 {
+  color: var(--text);
+  font-size: 0.95rem;
+  margin: 16px 0 8px 0;
+  font-weight: 700;
+}
+.content h4:first-child { margin-top: 0; }
+.content p { margin: 0 0 10px 0; }
+.content ul { padding-left: 20px; margin: 0 0 10px 0; }
+.content li { margin-bottom: 4px; }
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--card);
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  opacity: 0;
+  transition: all 0.25s;
+  z-index: 2000;
+  pointer-events: none;
+  max-width: 90vw;
+  text-align: center;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+.toast.error { border-color: var(--red); color: var(--red); }
+
+.footer {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-bottom: 24px;
+}
+.footer a {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 0.78rem; font-weight: 500;
+  transition: all 0.2s;
+}
+.footer a:hover {
+  border-color: var(--pink);
+  color: var(--pink);
+  transform: translateY(-1px);
+}
+.footer a.tg:hover { border-color: #229ED9; color: #229ED9; }
+.footer a svg { width: 14px; height: 14px; }
+
+@media (max-width: 600px) {
+  body { padding: 12px; }
+  .nav { top: 12px; left: 12px; right: 12px; }
+  .nav-btn span { display: none; }
+  .nav-btn { padding: 9px; width: 36px; justify-content: center; }
+  .nav-btn svg { width: 16px; height: 16px; }
+  .header h1 { font-size: 1.5rem; }
+  .app { margin-top: 60px; }
+  .input-row { flex-direction: column; }
+  .paste-btn { padding: 12px; }
+  .result-thumb { width: 70px; height: 94px; }
+  .content { padding: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <div class="nav-left">
+    <a href="https://ngthanhdiem.github.io" class="nav-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/>
+      </svg>
+      <span>Trang chủ</span>
+    </a>
+  </div>
+  <div class="nav-right">
+    <button class="nav-btn icon-only" id="themeToggle" title="Đổi theme">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" id="themeIcon">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<div class="app">
+  <div class="header">
+    <h1><span class="icon">🎵</span> Tải video TikTok</h1>
+    <p>Dán link TikTok để tải video không watermark, HD hoặc tách nhạc MP3. Miễn phí, không cần đăng nhập.</p>
+  </div>
+
+  <div class="error-box" id="errorBox"></div>
+
+  <div class="input-panel">
+    <div class="input-row">
+      <div class="input-wrap">
+        <span class="input-icon">🔗</span>
+        <input type="text" id="urlInput" placeholder="https://www.tiktok.com/@user/video/..." autocomplete="off" spellcheck="false">
+        <button class="clear-btn" id="clearBtn" title="Xóa">✕</button>
+      </div>
+      <button class="paste-btn" id="pasteBtn">📋 Dán</button>
+    </div>
+    <button class="main-btn" id="mainBtn">
+      <span id="mainBtnText">Tải ngay</span>
+    </button>
+    <div class="example-hint">
+      Hỗ trợ link dài và link ngắn <code id="exampleLink">vm.tiktok.com/xxx</code>
+    </div>
+  </div>
+
+  <div class="result" id="result">
+    <div class="result-header">
+      <img class="result-thumb" id="resultThumb" alt="" referrerpolicy="no-referrer">
+      <div class="result-info">
+        <div class="result-title" id="resultTitle"></div>
+        <div class="result-author" id="resultAuthor"></div>
+        <div class="result-meta" id="resultMeta"></div>
+      </div>
+    </div>
+
+    <div class="stats-grid" id="statsGrid"></div>
+
+    <div class="download-grid" id="downloadGrid"></div>
+
+    <div class="result-actions">
+      <button class="action-btn" id="copyLinkBtn">📋 Copy link gốc</button>
+      <button class="action-btn" id="openTikTokBtn">🎵 Mở TikTok</button>
+    </div>
+  </div>
+
+  <div class="history" id="history" style="display: none;">
+    <div class="history-head">
+      <span>Lịch sử gần đây</span>
+      <button class="history-clear" id="historyClear">Xóa</button>
+    </div>
+    <div id="historyList"></div>
+  </div>
+
+  <div class="content">
+    <p><strong>Tải video TikTok</strong> giúp bạn lưu video TikTok về máy dưới dạng MP4 không có watermark, hoặc tải bản HD chất lượng cao hơn. Có thể tách riêng âm thanh để lưu làm nhạc chuông hoặc nhạc nền. Không cần đăng nhập, không giới hạn số lần tải.</p>
+
+    <h4>Cách sử dụng</h4>
+    <ul>
+      <li>Mở video TikTok, bấm <strong>Chia sẻ → Sao chép liên kết</strong></li>
+      <li>Dán link vào ô phía trên, bấm <strong>Tải ngay</strong></li>
+      <li>Chọn <strong>Video HD</strong> hoặc <strong>Nhạc MP3</strong> để tải trực tiếp về máy</li>
+      <li>File sẽ tự động lưu vào thư mục Downloads của bạn</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <a href="https://ngthanhdiem.github.io">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75"/>
+      </svg>
+      Trang chủ
+    </a>
+    <a href="https://t.me/ThanhDiemX" target="_blank" rel="noopener noreferrer" class="tg">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+      </svg>
+      Telegram
+    </a>
+  </div>
+</div>
+
+<div class="toast" id="toast">Đã xong!</div>
+
+<script>
+(function() {
+  'use strict';
+
+  const API_BASE = 'https://www.tikwm.com/api/';
+  const HISTORY_KEY = 'tiktok_dl_history_v1';
+  const THEME_KEY = 'tiktok_dl_theme_v1';
+  const MAX_HISTORY = 12;
+
+  const els = {
+    urlInput: document.getElementById('urlInput'),
+    clearBtn: document.getElementById('clearBtn'),
+    pasteBtn: document.getElementById('pasteBtn'),
+    mainBtn: document.getElementById('mainBtn'),
+    mainBtnText: document.getElementById('mainBtnText'),
+    errorBox: document.getElementById('errorBox'),
+    result: document.getElementById('result'),
+    resultThumb: document.getElementById('resultThumb'),
+    resultTitle: document.getElementById('resultTitle'),
+    resultAuthor: document.getElementById('resultAuthor'),
+    resultMeta: document.getElementById('resultMeta'),
+    statsGrid: document.getElementById('statsGrid'),
+    downloadGrid: document.getElementById('downloadGrid'),
+    copyLinkBtn: document.getElementById('copyLinkBtn'),
+    openTikTokBtn: document.getElementById('openTikTokBtn'),
+    history: document.getElementById('history'),
+    historyList: document.getElementById('historyList'),
+    historyClear: document.getElementById('historyClear'),
+    exampleLink: document.getElementById('exampleLink'),
+    toast: document.getElementById('toast')
+  };
+
+  let toastTimer = null;
+  function showToast(msg, isError) {
+    els.toast.textContent = msg;
+    els.toast.classList.toggle('error', !!isError);
+    els.toast.classList.add('show');
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => els.toast.classList.remove('show'), 2200);
+  }
+  function showError(msg) {
+    els.errorBox.textContent = msg;
+    els.errorBox.classList.add('active');
+    setTimeout(() => els.errorBox.classList.remove('active'), 8000);
+  }
+  function hideError() {
+    els.errorBox.classList.remove('active');
+  }
+
+  function fmtSize(bytes) {
+    if (!bytes || bytes < 0) return '';
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / 1024 / 1024).toFixed(2) + ' MB';
+  }
+  function fmtNum(n) {
+    if (n === undefined || n === null || isNaN(Number(n))) return '—';
+    n = Number(n);
+    if (n >= 1000000000) return (n / 1000000000).toFixed(1).replace(/\.0$/, '') + 'B';
+    if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+    return n.toLocaleString('vi-VN');
+  }
+  function fmtDuration(sec) {
+    if (!sec) return '—';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return m + ':' + String(s).padStart(2, '0');
+  }
+  function fmtDate(ts) {
+    if (!ts) return '—';
+    try {
+      const d = new Date(ts * 1000);
+      return d.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    } catch (e) { return '—'; }
+  }
+
+  function extractUrl(text) {
+    if (!text) return null;
+    const match = text.match(/https?:\/\/[^\s]+/);
+    if (match) return match[0];
+    return text.trim();
+  }
+  function isValidTikTokUrl(url) {
+    return url && /tiktok\.com|douyin\.com/i.test(url);
+  }
+
+  async function fetchVideoInfo(url) {
+    const apiUrl = API_BASE + '?url=' + encodeURIComponent(url) + '&hd=1';
+    const res = await fetch(apiUrl);
+    if (!res.ok) throw new Error('Không kết nối được API (HTTP ' + res.status + ')');
+    const json = await res.json();
+    if (json.code !== 0) throw new Error(json.msg || 'Không lấy được thông tin video');
+    return json.data;
+  }
+
+  // Tải file trực tiếp về máy qua blob
+  async function downloadFile(btn, url, filename, sizeEl) {
+    if (!url) return;
+
+    btn.disabled = true;
+    btn.classList.add('downloading');
+    btn.classList.remove('success');
+
+    const progressBar = btn.querySelector('.dl-progress');
+    const arrow = btn.querySelector('.dl-arrow');
+    const origArrow = arrow.textContent;
+
+    // Đổi label hiển thị tiến trình
+    if (sizeEl) sizeEl.textContent = 'Đang tải 0%...';
+
+    try {
+      const response = await fetch(url, { mode: 'cors' });
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+
+      const contentLength = response.headers.get('content-length');
+      const total = contentLength ? parseInt(contentLength, 10) : 0;
+
+      // Nếu trình duyệt hỗ trợ ReadableStream → hiện progress
+      let blob;
+      if (response.body && response.body.getReader && total > 0) {
+        const reader = response.body.getReader();
+        const chunks = [];
+        let received = 0;
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          chunks.push(value);
+          received += value.length;
+          const pct = Math.round((received / total) * 100);
+          if (sizeEl) sizeEl.textContent = 'Đang tải ' + pct + '% · ' + fmtSize(received);
+          if (progressBar) progressBar.style.width = pct + '%';
+        }
+        blob = new Blob(chunks);
+      } else {
+        blob = await response.blob();
+        if (sizeEl) sizeEl.textContent = 'Đang tải · ' + fmtSize(blob.size);
+        if (progressBar) progressBar.style.width = '100%';
+      }
+
+      // Trigger download bằng thẻ <a>
+      const blobUrl = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = blobUrl;
+      a.download = filename || ('tiktok-' + Date.now());
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+
+      // Hiệu ứng thành công
+      btn.classList.remove('downloading');
+      btn.classList.add('success');
+      arrow.textContent = '✓';
+      if (sizeEl) sizeEl.textContent = '✓ Đã tải · ' + fmtSize(blob.size);
+      showToast('Đã tải xong: ' + filename);
+
+      // Reset sau 3 giây
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.classList.remove('success');
+        arrow.textContent = origArrow;
+        if (progressBar) progressBar.style.width = '0%';
+        if (sizeEl && total > 0) sizeEl.textContent = fmtSize(total);
+        else if (sizeEl) sizeEl.textContent = 'Sẵn sàng tải';
+      }, 3000);
+
+    } catch (err) {
+      console.error('Download error:', err);
+      btn.classList.remove('downloading');
+      btn.disabled = false;
+      arrow.textContent = origArrow;
+      if (progressBar) progressBar.style.width = '0%';
+
+      // Nếu CORS chặn → fallback mở tab mới
+      if (err.message.includes('Failed to fetch') || err.name === 'TypeError') {
+        if (sizeEl) sizeEl.textContent = '⚠ CORS chặn — mở tab mới...';
+        showToast('Không tải trực tiếp được. Đang mở tab mới...', true);
+        setTimeout(() => {
+          const a = document.createElement('a');
+          a.href = url;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }, 800);
+      } else {
+        if (sizeEl) sizeEl.textContent = '⚠ Lỗi: ' + err.message;
+        showToast('Tải thất bại: ' + err.message, true);
+      }
+    }
+  }
+
+  async function getFileSize(url) {
+    if (!url) return 0;
+    try {
+      const res = await fetch(url, { method: 'HEAD' });
+      const len = res.headers.get('content-length');
+      return len ? parseInt(len, 10) : 0;
+    } catch (e) { return 0; }
+  }
+
+  function createDownloadBtn(opts) {
+    const btn = document.createElement('button');
+    btn.className = 'dl-btn ' + (opts.className || '');
+    btn.type = 'button';
+
+    const icon = document.createElement('span');
+    icon.className = 'dl-icon';
+    icon.textContent = opts.icon;
+
+    const info = document.createElement('div');
+    info.className = 'dl-info';
+
+    const name = document.createElement('div');
+    name.className = 'dl-name';
+    name.textContent = opts.name;
+
+    const size = document.createElement('div');
+    size.className = 'dl-size';
+    size.textContent = 'Đang kiểm tra dung lượng...';
+
+    info.appendChild(name);
+    info.appendChild(size);
+
+    const arrow = document.createElement('span');
+    arrow.className = 'dl-arrow';
+    arrow.textContent = '⬇';
+
+    const progress = document.createElement('div');
+    progress.className = 'dl-progress';
+
+    btn.appendChild(icon);
+    btn.appendChild(info);
+    btn.appendChild(arrow);
+    btn.appendChild(progress);
+
+    // Bấm để tải trực tiếp
+    btn.addEventListener('click', () => {
+      downloadFile(btn, opts.url, opts.filename, size);
+    });
+
+    // Lấy dung lượng file
+    getFileSize(opts.url).then((bytes) => {
+      if (bytes) size.textContent = fmtSize(bytes);
+      else size.textContent = 'Sẵn sàng tải';
+    });
+
+    return btn;
+  }
+
+  function renderResult(data, originalUrl) {
+    hideError();
+    els.result.classList.add('active');
+
+    els.resultThumb.src = data.cover || data.origin_cover || '';
+    els.resultThumb.onerror = () => {
+      els.resultThumb.style.background = 'var(--card-2)';
+    };
+
+    els.resultTitle.textContent = data.title || 'Không có tiêu đề';
+
+    const author = data.author || {};
+    els.resultAuthor.textContent = '@' + (author.unique_id || 'unknown');
+
+    const metaParts = [];
+    if (data.music_info && data.music_info.title) {
+      metaParts.push('🎵 ' + data.music_info.title.slice(0, 40));
+    }
+    els.resultMeta.textContent = metaParts.join(' · ');
+
+    const stats = [
+      { label: 'Thời lượng', value: fmtDuration(data.duration) },
+      { label: 'Lượt xem', value: fmtNum(data.play_count) },
+      { label: 'Lượt tim', value: fmtNum(data.digg_count) },
+      { label: 'Bình luận', value: fmtNum(data.comment_count) },
+      { label: 'Chia sẻ', value: fmtNum(data.share_count) },
+      { label: 'Lưu', value: fmtNum(data.collect_count) },
+      { label: 'Ngày đăng', value: fmtDate(data.create_time) }
+    ];
+
+    els.statsGrid.innerHTML = '';
+    stats.forEach(s => {
+      const item = document.createElement('div');
+      item.className = 'stat-item';
+      const val = document.createElement('div');
+      val.className = 'stat-value';
+      val.textContent = s.value;
+      const lbl = document.createElement('div');
+      lbl.className = 'stat-label';
+      lbl.textContent = s.label;
+      item.appendChild(val);
+      item.appendChild(lbl);
+      els.statsGrid.appendChild(item);
+    });
+
+    els.downloadGrid.innerHTML = '';
+
+    const videoId = data.id || Date.now();
+    const authorName = author.unique_id || 'tiktok';
+    const shortTitle = (data.title || 'video').slice(0, 30).replace(/[^\w\u00C0-\u024F\u1E00-\u1EFF]/g, '_');
+
+    // CHỈ 2 nút: Video HD + Nhạc MP3
+    if (data.hdplay || data.play) {
+      els.downloadGrid.appendChild(createDownloadBtn({
+        className: 'hd',
+        icon: '🎬',
+        name: 'Video HD (Không watermark)',
+        url: data.hdplay || data.play,
+        filename: authorName + '_' + videoId + '.mp4'
+      }));
+    }
+
+    if (data.music) {
+      els.downloadGrid.appendChild(createDownloadBtn({
+        className: 'mp3',
+        icon: '🎵',
+        name: 'Nhạc MP3',
+        url: data.music,
+        filename: authorName + '_' + videoId + '.mp3'
+      }));
+    }
+
+    els.copyLinkBtn.onclick = () => {
+      navigator.clipboard.writeText(originalUrl).then(() => {
+        showToast('Đã copy link gốc');
+      }).catch(() => {
+        showToast('Không copy được', true);
+      });
+    };
+
+    els.openTikTokBtn.onclick = () => {
+      window.open(originalUrl, '_blank', 'noopener noreferrer');
+    };
+
+    saveToHistory(data, originalUrl);
+    renderHistory();
+  }
+
+  function loadHistory() {
+    try {
+      const raw = localStorage.getItem(HISTORY_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) { return []; }
+  }
+
+  function saveToHistory(data, url) {
+    try {
+      const list = loadHistory();
+      const id = data.id || url;
+      const filtered = list.filter(item => item.id !== id);
+      filtered.unshift({
+        id: id,
+        url: url,
+        title: data.title || '',
+        author: (data.author && data.author.unique_id) || '',
+        cover: data.cover || data.origin_cover || '',
+        time: Date.now()
+      });
+      const trimmed = filtered.slice(0, MAX_HISTORY);
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(trimmed));
+    } catch (e) {}
+  }
+
+  function renderHistory() {
+    const list = loadHistory();
+    if (list.length === 0) {
+      els.history.style.display = 'none';
+      return;
+    }
+    els.history.style.display = 'block';
+    els.historyList.innerHTML = '';
+
+    list.forEach(item => {
+      const el = document.createElement('div');
+      el.className = 'history-item';
+
+      const img = document.createElement('img');
+      img.className = 'history-thumb';
+      img.src = item.cover;
+      img.alt = '';
+      img.referrerPolicy = 'no-referrer';
+      img.onerror = () => { img.style.display = 'none'; };
+
+      const info = document.createElement('div');
+      info.className = 'history-info';
+
+      const title = document.createElement('div');
+      title.className = 'history-title';
+      title.textContent = item.title || item.url;
+
+      const author = document.createElement('div');
+      author.className = 'history-author';
+      author.textContent = '@' + (item.author || 'tiktok');
+
+      info.appendChild(title);
+      info.appendChild(author);
+
+      el.appendChild(img);
+      el.appendChild(info);
+
+      el.addEventListener('click', () => {
+        els.urlInput.value = item.url;
+        els.clearBtn.classList.add('visible');
+        doDownload();
+      });
+
+      els.historyList.appendChild(el);
+    });
+  }
+
+  async function doDownload() {
+    hideError();
+    const raw = els.urlInput.value.trim();
+    const url = extractUrl(raw);
+
+    if (!url) {
+      showError('Vui lòng dán link TikTok vào ô phía trên.');
+      return;
+    }
+    if (!isValidTikTokUrl(url)) {
+      showError('Link không phải TikTok. Chỉ hỗ trợ tiktok.com hoặc vm.tiktok.com.');
+      return;
+    }
+
+    els.mainBtn.disabled = true;
+    els.mainBtnText.innerHTML = '<span class="spinner"></span> Đang xử lý...';
+    els.result.classList.remove('active');
+
+    try {
+      const data = await fetchVideoInfo(url);
+      renderResult(data, url);
+      els.mainBtnText.textContent = 'Đã lấy thông tin ✓';
+      showToast('Đã lấy thông tin video');
+      setTimeout(() => {
+        els.mainBtnText.textContent = 'Tải ngay';
+        els.mainBtn.disabled = false;
+      }, 1500);
+    } catch (err) {
+      console.error(err);
+      let msg = err.message || 'Có lỗi xảy ra. Vui lòng thử lại.';
+      if (msg.includes('Failed to fetch') || msg.includes('NetworkError')) {
+        msg = 'Không kết nối được máy chủ. Kiểm tra mạng hoặc thử lại sau vài giây.';
+      }
+      showError(msg);
+      els.mainBtnText.textContent = 'Tải ngay';
+      els.mainBtn.disabled = false;
+    }
+  }
+
+  els.mainBtn.addEventListener('click', doDownload);
+
+  els.urlInput.addEventListener('input', () => {
+    els.clearBtn.classList.toggle('visible', els.urlInput.value.length > 0);
+    hideError();
+  });
+
+  els.urlInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      doDownload();
+    }
+  });
+
+  els.clearBtn.addEventListener('click', () => {
+    els.urlInput.value = '';
+    els.clearBtn.classList.remove('visible');
+    els.urlInput.focus();
+    hideError();
+    els.result.classList.remove('active');
+    els.mainBtnText.textContent = 'Tải ngay';
+    els.mainBtn.disabled = false;
+  });
+
+  els.pasteBtn.addEventListener('click', async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      if (text) {
+        els.urlInput.value = text.trim();
+        els.clearBtn.classList.add('visible');
+        hideError();
+        els.urlInput.focus();
+        showToast('Đã dán từ clipboard');
+      } else {
+        showToast('Clipboard trống', true);
+      }
+    } catch (e) {
+      showToast('Trình duyệt không cho phép đọc clipboard. Vui lòng dán thủ công (Ctrl+V).', true);
+    }
+  });
+
+  els.exampleLink.addEventListener('click', () => {
+    els.urlInput.value = 'https://www.tiktok.com/@tiktok/video/7012345678901234567';
+    els.clearBtn.classList.add('visible');
+    els.urlInput.focus();
+  });
+
+  els.historyClear.addEventListener('click', () => {
+    if (!confirm('Xóa toàn bộ lịch sử?')) return;
+    localStorage.removeItem(HISTORY_KEY);
+    renderHistory();
+    showToast('Đã xóa lịch sử');
+  });
+
+  const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeIcon(savedTheme);
+
+  function updateThemeIcon(theme) {
+    const icon = document.getElementById('themeIcon');
+    if (theme === 'dark') {
+      icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>';
+    } else {
+      icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>';
+    }
+  }
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    updateThemeIcon(next);
+    localStorage.setItem(THEME_KEY, next);
+  });
+
+  renderHistory();
+})();
+</script>
+</body>
+</html>
